@@ -1,4 +1,4 @@
-import {v2 as Mala} from "cloudniary"
+import {v2 as cloudinary} from "cloudinary"
 import fs from "fs"
 
 // Configuration
@@ -8,13 +8,14 @@ import fs from "fs"
         api_secret: process.env.CLOUDINARY_API_SECRET
     });
 
-    const uploadOnCloudniary = async (localFilePath) =>{
+    const uploadOnCloudinary = async (localFilePath) =>{
 try {
     if (!localFilePath) return null
     const response = await cloudinary.uploader.upload
     (localFilePath,{
         resource_type:"auto"
     })
+    fs.unlinkSync(localFilePath)
     return response;
 } catch (error) {
     fs.unlinkSync(localFilePath) // remove the locally saved temp file
@@ -22,4 +23,4 @@ try {
 }
     }
 
-    export {uploadOnCloudniary}
+    export {uploadOnCloudinary}
