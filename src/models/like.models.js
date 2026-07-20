@@ -9,10 +9,6 @@ const likeSchema = new Schema ({
         type:Schema.Types.ObjectId,
         ref: "Comment"
     },
-    video:{
-        type:Schema.Types.ObjectId,
-        ref: "video"
-    },
     likedBy:{
         type:Schema.Types.ObjectId,
         ref: "User"
